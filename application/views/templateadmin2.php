@@ -22,9 +22,15 @@
     <!-- Custom CSS -->
     <link href="<?= base_url('themeadmin2/dist/css/sb-admin-2.css') ?>" rel="stylesheet">
 
+    <!-- DataTables CSS -->
+    <link href="<?= base_url('themeadmin2/vendor/datatables-plugins/dataTables.bootstrap.css') ?>" rel="stylesheet">
+
+    <!-- DataTables Responsive CSS -->
+    <link href="<?= base_url('themeadmin2/vendor/datatables-responsive/dataTables.responsive.css') ?>" rel="stylesheet">
     <!-- Custom Fonts -->
     <link href="<?= base_url('themeadmin2/vendor/font-awesome/css/font-awesome.min.css') ?>"rel="stylesheet" type="text/css">
-
+      <!-- jQuery -->
+    <script src="<?= base_url('themeadmin2/vendor/jquery/jquery.min.js') ?>"></script>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -276,7 +282,7 @@
                             <!-- /input-group -->
                         </li>
                         <li>
-                            <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                            <a href="<?= site_url('welcome/dashboard') ?>"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>
@@ -374,7 +380,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1 class="page-header">Blank</h1>
+                        <?= $content ?>
                     </div>
                     <!-- /.col-lg-12 -->
                 </div>
@@ -387,8 +393,7 @@
     </div>
     <!-- /#wrapper -->
 
-    <!-- jQuery -->
-    <script src="<?= base_url('themeadmin2/vendor/jquery/jquery.min.js') ?>"></script>
+  
 
     <!-- Bootstrap Core JavaScript -->
     <script src="<?= base_url('themeadmin2/vendor/bootstrap/js/bootstrap.min.js') ?>"></script>
@@ -396,6 +401,15 @@
     <!-- Metis Menu Plugin JavaScript -->
     <script src="<?= base_url('themeadmin2/vendor/metisMenu/metisMenu.min.js') ?>"></script>
 
+     <!-- DataTables JavaScript -->
+    <script src="<?= base_url('themeadmin2/vendor/datatables/js/jquery.dataTables.min.js') ?>"></script>
+    <script src="<?= base_url('themeadmin2/vendor/datatables-plugins/dataTables.bootstrap.min.js') ?>"></script>
+    <script src="<?= base_url('themeadmin2/vendor/datatables-responsive/dataTables.responsive.js') ?>"></script>
+
+
+
+    <script src="https://cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js"></script>   
+    <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.flash.min.js"></script>   
     <!-- Custom Theme JavaScript -->
     <script src="<?= base_url('themeadmin2/dist/js/sb-admin-2.js') ?>"></script>
 
