@@ -39,15 +39,7 @@ echo $this->table->generate();
 ?>
 <script type="text/javascript">
 $(document).ready(function(){
-    $('#filmtable').DataTable( {
-        dom: 'Bfrtip',
-        buttons: [
-            'copyFlash',
-            'csvFlash',
-            'excelFlash',
-            'pdfFlash'
-        ]
-    });
+    $('#filmtable').DataTable();
 });
 
 </script>
