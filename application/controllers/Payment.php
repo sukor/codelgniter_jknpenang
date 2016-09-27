@@ -36,8 +36,8 @@ public function get_table_ajax_payment(){
 		$rowtable[]=$row->first_name .' '.$row->last_name ;
 		$rowtable[]=$row->amount ;
 		$rowtable[]=$row->payment_date;
-		$rowtable[]='<a href="'.site_url('payment/edit/').'" class="btn btn-default glyphicon glyphicon-pencil" ></a>
-		<a class="btn btn-default glyphicon glyphicon-pencil" ></a>';
+		$rowtable[]='<a href="'.site_url('payment/update/'.$row->payment_id) .
+		'" class="btn btn-primary glyphicon glyphicon-pencil" ></a>';
 		
 
      $data[]=$rowtable;
@@ -61,9 +61,42 @@ public function get_table_ajax_payment(){
 
 
 
-function edit($data){
+public function update($id){
+
+	
+ $data['deatilpayment']=$this->M_payment->get_paymentbyid($id);
+  $data['customer']=$this->M_payment->get_customer();
+
+
+	$d['content']=$this->load->view('payment/v_paymenupdate',$data,TRUE);
+	  $this->load->view('templateadmin2',$d);
 
 }
+
+public function updatesave(){
+
+	echo "<pre>";
+	print_r($_POST);
+	echo "</pre>";
+
+	$paymentid=$this->input->post('payment_id',TRUE);
+
+	$data=array(
+			'customer_id'=>$this->input->post('customer',TRUE),
+			'amount'=>$this->input->post('amount',TRUE)
+		);
+
+
+	$this->db->where('payment_id',$paymentid);
+	$this->db->update('payment',$data);
+
+
+   redirect('payment/update/'.$paymentid);
+
+
+
+}
+
 
 
 }

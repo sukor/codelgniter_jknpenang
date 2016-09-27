@@ -35,7 +35,7 @@ public function _get_table(){
 
   $this->db->select('c.first_name as customer_first_name,
   	c.last_name as customer_last_name,
-  	s.first_name,s.last_name,p.amount,p.payment_date');
+  	s.first_name,s.last_name,p.amount,p.payment_date,p.payment_id');
   $this->db->from('payment p');
   $this->db->join('customer c',
   	'c.customer_id=p.customer_id','left');
@@ -111,6 +111,40 @@ public function _filter_payment(){
 
 
 	
+}
+
+
+public function get_paymentbyid($id){
+
+	$this->db->select('*');
+	$this->db->from('payment');
+	$this->db->where('payment_id',$id);
+
+	$query=$this->db->get();
+
+	if($query->num_rows() > 0){
+		return $query->result();
+
+	}
+
+}
+
+	public function get_customer(){
+
+	$this->db->select('first_name,last_name,customer_id');
+	$this->db->from('customer');
+	$this->db->where('active',1);
+
+	$query=$this->db->get();
+
+	if($query->num_rows() > 0){
+		return $query->result();
+
+	}
+
+
+
+
 }
 
 
