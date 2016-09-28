@@ -1,6 +1,6 @@
 <?php
 
-print_r($deatilpayment);
+//print_r($deatilpayment);
 
 
 ?>
@@ -10,8 +10,19 @@ print_r($deatilpayment);
 $attribute=array('class'=>'form-horizontal');
 echo form_open('payment/updatesave',$attribute);
 ?>
+<?php
+if($this->session->flashdata('messageupdate')){
+?>
+<div class="alert alert-success" role="alert">
+<?php
 
+ echo $this->session->flashdata('messageupdate');
 
+?>
+</div>
+<?php
+}
+?>
 <fieldset>
 
 <!-- Form Name -->
@@ -81,6 +92,8 @@ echo form_open('payment/updatesave',$attribute);
   <label class="col-md-4 control-label" for="updatebtn"></label>
   <div class="col-md-4">
     <button type='submit' id="updatebtn" name="updatebtn" class="btn btn-primary">Button</button>
+     <a class="btn btn-info" href="<?=site_url('payment')?>">Back</a>
+
   </div>
 </div>
 

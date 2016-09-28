@@ -116,8 +116,11 @@ public function _filter_payment(){
 
 public function get_paymentbyid($id){
 
-	$this->db->select('*');
-	$this->db->from('payment');
+	$this->db->select('p.*,c.first_name as first_name_customer,
+		c.last_name as last_name_customer,s.first_name,s.last_name');
+	$this->db->from('payment p');
+	$this->db->join('customer c','c.customer_id=p.customer_id');
+	$this->db->join('staff s','s.staff_id=p.staff_id');
 	$this->db->where('payment_id',$id);
 
 	$query=$this->db->get();

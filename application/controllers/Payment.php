@@ -14,6 +14,8 @@ public function __construct(){
 
 public function index(){
 
+
+  
 	$data['title']='payment';
  	$d['content']=$this->load->view('payment/v_paymenttable',$data,TRUE);
 	  $this->load->view('templateadmin2',$d);
@@ -37,7 +39,9 @@ public function get_table_ajax_payment(){
 		$rowtable[]=$row->amount ;
 		$rowtable[]=$row->payment_date;
 		$rowtable[]='<a href="'.site_url('payment/update/'.$row->payment_id) .
-		'" class="btn btn-primary glyphicon glyphicon-pencil" ></a>';
+		'" class="btn btn-primary glyphicon glyphicon-pencil" ></a>
+		<a href="'.site_url('payment/delete/'.$row->payment_id) .
+		'" class="btn btn-primary glyphicon glyphicon-trash" ></a>';
 		
 
      $data[]=$rowtable;
@@ -91,11 +95,48 @@ public function updatesave(){
 	$this->db->update('payment',$data);
 
 
-   redirect('payment/update/'.$paymentid);
+	///$this->output->enable_profiler(TRUE);
+
+	$this->session->set_flashdata('messageupdate','Seuccesful Update');
+    redirect('payment/update/'.$paymentid);
 
 
 
 }
+
+
+public function delete($id){
+
+   $data['deatilpayment']=$this->M_payment->get_paymentbyid($id);
+
+
+	$d['content']=$this->load->view('payment/v_paymenDelete',$data,TRUE);
+	$this->load->view('templateadmin2',$d);
+
+}
+
+public function deleteupdate(){
+
+
+	$id=$this->input->post('payment_id',TRUE);
+
+	$this->db->where('payment_id',$id);
+	$delete=$this->db->delete('payment');
+
+  if($delete){
+  	$this->session->set_flashdata('messageupdate','<div class="alert alert-success" role="alert">Seuccesful Delete
+  	<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button> </div>');
+  }else{
+  	$this->session->set_flashdata('messageupdate','<div class="alert alert-success" role="alert">Delete Fail </div>');
+  }
+	
+	$this->output->enable_profiler(TRUE);
+   // redirect('payment');
+
+
+}
+
+
 
 
 

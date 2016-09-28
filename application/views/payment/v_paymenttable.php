@@ -1,5 +1,7 @@
 <h3><?= $title?></h3>
 
+<?= $this->session->flashdata('messageupdate');?>
+
 <table id="tablepaymnet" class='table'>
 	<thead>
 		<tr>
