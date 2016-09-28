@@ -2,13 +2,20 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 //start calss text
-class Payment extends CI_Controller {
+class Payment extends MY_Controller {
 
 
 public function __construct(){
 	parent::__construct();
 	$this->load->model('M_payment');
 
+}
+
+public function test(){
+	if(!$this->acl_permits('payment.update'))
+	 redirect("welcome/permission_denied");
+
+	echo "boleh view";
 }
 
 
@@ -66,7 +73,7 @@ public function get_table_ajax_payment(){
 
 
 public function update($id){
-
+ check_acl();
 	
  $data['deatilpayment']=$this->M_payment->get_paymentbyid($id);
   $data['customer']=$this->M_payment->get_customer();
@@ -78,7 +85,7 @@ public function update($id){
 }
 
 public function updatesave(){
-
+	check_acl("payment.update");
 	echo "<pre>";
 	print_r($_POST);
 	echo "</pre>";
@@ -106,7 +113,7 @@ public function updatesave(){
 
 
 public function delete($id){
-
+   check_acl();
    $data['deatilpayment']=$this->M_payment->get_paymentbyid($id);
 
 
@@ -130,8 +137,8 @@ public function deleteupdate(){
   	$this->session->set_flashdata('messageupdate','<div class="alert alert-success" role="alert">Delete Fail </div>');
   }
 	
-	$this->output->enable_profiler(TRUE);
-   // redirect('payment');
+	//$this->output->enable_profiler(TRUE);
+    redirect('payment');
 
 
 }

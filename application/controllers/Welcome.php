@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Welcome extends CI_Controller {
+class Welcome extends MY_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -32,6 +32,11 @@ public function dashboard()
 	   $data['title']='welcome';
        $d['content']=$this->load->view('dashboard',$data,TRUE);
 	  $this->load->view('templateadmin2',$d);
+	}
+
+	public function permission_denied(){
+		echo "<h1>Permission denied</h1>";
+		echo "<br><a href='".site_url('welcome')."'>Home</a>";
 	}
 
 

@@ -23,7 +23,8 @@ $(document).ready(function() {
         "processing": true,
         "serverSide": true,
         'pageLength':25,
-        'lengtMenu':[20,100,200,300],
+        'lengtMenu':[20,100,200,300], 
+'bStateSave':true, 
         "ajax":{
         		"url":"<?= site_url('payment/get_table_ajax_payment')?>",
         		"type":"POST",
